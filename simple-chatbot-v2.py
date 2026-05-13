@@ -7,7 +7,7 @@ load_dotenv()
 
 api_key = os.getenv("GEMINI_API_KEY")
 
-model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=2)
 
 agent = create_agent(
     model=model,
@@ -16,13 +16,15 @@ agent = create_agent(
     " and provide a helpful answer. If you don't know the answer, say you don't know. Stay professional and safe.",
 )
 
-
 chat_history = []
-
-print("Chat Assistant ready! type 'bye' or 'exit' to end the conversation.")
+print("\n\n")
+print(
+    "Hi, I'm a Chat Assistant. My name is Steve. I'm ready! type 'bye' or 'exit' to end the conversation."
+)
 
 while True:
-    user_input = input("You: ".strip())
+    print("\n\n")
+    user_input = input("You: ").strip()
     print("\n")
     if user_input.lower() in ["bye", "exit"]:
         print("Assistant 🤖: Goodbye! 👋")
@@ -31,14 +33,14 @@ while True:
     messages = chat_history + [{"role": "user", "content": user_input}]
     result = agent.invoke({"messages": messages})
 
-    print(result)
+    """ rint(result) """
 
     try:
         reply = result["messages"][-1].content
     except Exception as e:
         reply = str(e)
 
-    print(f"Assistant 🤖: {reply} \n")
+    print(f"Steve 🤖: {reply} \n")
     print("-" * 60)
 
     # update chat history

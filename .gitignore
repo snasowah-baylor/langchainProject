@@ -1,2 +1,7 @@
 *.env
 *.venv
+.claude/
+.vscode/
+.benchmarks/
+.vscode/
+__pycache__/
